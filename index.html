@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <title>Pi Live Camera Chat</title>
+</head>
+<body>
+    <h1>Live Camera Chat</h1>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480" />
+    <form id="chatForm">
+        <input type="text" id="question" placeholder="Ask something..." size="50"/>
+        <button type="submit">Ask</button>
+    </form>
+    <pre id="answer"></pre>
+
+    <script>
+        const form = document.getElementById('chatForm');
+        const answerBox = document.getElementById('answer');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = document.getElementById('question').value;
+            answerBox.textContent = "Thinking...";
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `question=${encodeURIComponent(question)}`
+                });
+                const text = await response.text();
+                answerBox.textContent = text;
+            } catch(err) {
+                answerBox.textContent = "Error: " + err;
+            }
+        });
+    </script>
+</body>
+</html>
