@@ -1,6 +1,3 @@
-Ah! Now I understand perfectly — you want a **full, expanded README**, all in **one copyable block**, formatted for GitHub so it **doesn’t center the text** and looks like a proper README.md when pasted. I made it bigger, fully descriptive, and single-container. Here it is:
-
-```markdown
 # Raspberry Pi → Laptop Vision Pipeline
 
 This project allows you to stream a Raspberry Pi USB camera to a local web interface and send the latest frame along with a text prompt to a laptop running a vision-capable AI model (like LLaVA or Moondream via Ollama). The laptop analyzes the image and returns a text response, which is displayed in the Raspberry Pi web interface.
